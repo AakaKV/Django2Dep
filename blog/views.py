@@ -23,8 +23,8 @@ def post_new(request):
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
-            #Sends user to the post they just made
-            return redirect('post_detail', pk=post.pk)
+            #Sends user to the post they just made/added .html here too
+            return redirect('post_detail.html', pk=post.pk)
     else:
         form = PostForm()
     return render(request, 'blog/post_edit.html', {'form': form})
@@ -40,7 +40,8 @@ def post_edit(request, pk):
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
-            return redirect('post_detail', pk=post.pk)
+            #added .html to this return/ No noticable change!
+            return redirect('post_detail.html', pk=post.pk)
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
